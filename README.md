@@ -37,7 +37,7 @@ Unity 프로젝트의 `Packages/manifest.json` 파일에 다음 내용을 추가
 
 ---
 
-📁 샘플
+## 📁 샘플
 /Example 폴더안에 Sample데이터 UnityPackage가 있습니다.
 
 ![capture.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture.PNG)
