@@ -1,5 +1,5 @@
 {
-  "name": "com.dopple.Sheet2SO",
+  "name": "com.dopple.sheet2so",
   "version": "1.0.0",
   "displayName": "Sheet2SO",
   "description": "A lightweight tool to import and manage Google Spreadsheet data as Unity ScriptableObjects. Supports custom data structure, editor integration, and flexible template-based workflows.",
