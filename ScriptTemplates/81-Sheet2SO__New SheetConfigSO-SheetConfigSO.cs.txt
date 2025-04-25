@@ -1,0 +1,139 @@
+﻿using UnityEngine;
+using UnityEditor;
+
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "YourProject/#SCRIPTNAME#", order = int.MaxValue)]
+public class #SCRIPTNAME# : DoppleLittleHelper.BaseSheetConfigSO
+{
+    /*
+    // Your Custom Data
+    [Header("[Custom SO Data]")]
+
+    [SerializeField] DefineSO defineSO;
+    [SerializeField] GameStringSO gameStringSO;
+    [SerializeField] CardSO cardSO;
+    */
+
+    public override void ClearSOData()
+    {
+        /*
+        // Your Custom Data Clear
+
+        if (defineSO != null)
+        {
+            defineSO.DefineClear();
+            defineSO.Save();
+        }
+        */
+    }
+
+    public override void AutoFindDataReferences()
+    {
+        /*
+        // Your Custom Data FindReferences
+
+        string[] defineGuids = AssetDatabase.FindAssets("t:DefineSO");
+        if (defineGuids.Length > 0)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(defineGuids[0]);
+            defineSO = AssetDatabase.LoadAssetAtPath<DefineSO>(path);
+        }
+        */
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+    }
+}
+
+
+[CustomEditor(typeof(#SCRIPTNAME#))]
+public class #SCRIPTNAME#Editor : UnityEditor.Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        #SCRIPTNAME# config = (#SCRIPTNAME#)target;
+
+        if (GUILayout.Button("Clear SO Data"))
+        {
+            config.ClearSOData();
+        }
+
+        if (GUILayout.Button("Load from MasterSheet.tsv"))
+        {
+            string folderPath = "Assets/YourProject/Editor/";
+            string filePath = EditorUtility.OpenFilePanel("Select MasterSheet File", folderPath, "tsv");
+
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                config.LoadMasterSheet(filePath);
+                Debug.Log($"TSV Load Complete : {filePath}");
+            }
+            else
+            {
+                Debug.LogWarning("TSV File Select Canceled");
+            }
+        }
+
+        if (GUILayout.Button("Auto Find Data References"))
+        {
+            config.AutoFindDataReferences();
+        }
+    }
+}
+
+public class #SCRIPTNAME#Downloader : DoppleLittleHelper.BaseSheetDownloader<#SCRIPTNAME#>
+{
+    static #SCRIPTNAME#Downloader window;
+
+    [MenuItem("YourProject/#SCRIPTNAME#Downloader")]
+    static void ShowWindow()
+    {
+        window = GetWindow<#SCRIPTNAME#Downloader>("YourProject Sheet Downloader");
+        window.minSize = new Vector2(400, 300);
+    }
+
+    protected override void LoadConfig()
+    {
+        base.LoadConfig();
+
+        if (configSO == null)
+        {
+            Debug.LogError("#SCRIPTNAME# Find Faield");
+        }
+    }
+
+    void OnGUI()
+    {
+        if (configSO == null)
+        {
+            EditorGUILayout.HelpBox("#SCRIPTNAME# Find Faield", MessageType.Error);
+            return;
+        }
+
+        EditorGUILayout.Space(10);
+        EditorGUILayout.LabelField("YourProject Sheet Downloader", EditorStyles.boldLabel);
+        EditorGUILayout.Space(10);
+
+        EditorGUI.BeginChangeCheck();
+        configSO = (#SCRIPTNAME#)EditorGUILayout.ObjectField("Sheet Config", configSO, typeof(#SCRIPTNAME#), false);
+
+        if (configSO.SheetList.Count == 0)
+        {
+            EditorGUILayout.HelpBox("#SCRIPTNAME#에 MasterSheet Data is Need Setting Data", MessageType.Warning);
+            return;
+        }
+
+        OnGUI_Data();
+
+        foreach (var item in configSO.SheetList)
+        {
+            if (GUILayout.Button($"Download {item.sheetName}"))
+            {
+                StartSingleDataDownload(item);
+            }
+        }
+    }
+}
+
+

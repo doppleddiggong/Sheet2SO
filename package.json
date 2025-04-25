@@ -1,0 +1,28 @@
+{
+  "name": "com.dopple.Sheet2SO",
+  "version": "1.0.0",
+  "displayName": "Sheet2SO",
+  "description": "A lightweight tool to import and manage Google Spreadsheet data as Unity ScriptableObjects. Supports custom data structure, editor integration, and flexible template-based workflows.",
+  "unity": "2020.3",
+  "author": {
+      "name": "dopple",
+      "email": "ju100.bae@gmail.com",
+      "url": "https://github.com/doppleddiggong"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/doppleddiggong/Sheet2SO.git"
+  },
+  "keywords": [
+	"editor",
+	"unity",
+	"scriptableobject",
+	"data",
+	"google-sheets",
+	"import",
+	"tooling",
+	"automation"
+  ],
+  "type": "tool",
+  "license": "MIT"
+}
