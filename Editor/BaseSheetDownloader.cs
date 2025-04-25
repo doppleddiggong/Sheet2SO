@@ -48,7 +48,6 @@ namespace DoppleLittleHelper
             EditorGUILayout.LabelField("Base Sheet Downloader", EditorStyles.boldLabel);
             EditorGUILayout.Space(10);
 
-            // Config 편집
             EditorGUI.BeginChangeCheck();
             configSO = (TConfig)EditorGUILayout.ObjectField("Sheet Config", configSO, typeof(TConfig), false);
 
@@ -64,7 +63,6 @@ namespace DoppleLittleHelper
             {
                 if (GUILayout.Button($"Download {item.sheetName}"))
                 {
-                    // 개별 데이터 다운로드 시작
                     StartSingleDataDownload(item);
                 }
             }
@@ -86,7 +84,6 @@ namespace DoppleLittleHelper
                 EditorGUILayout.LabelField("Progress", EditorStyles.boldLabel);
                 EditorGUILayout.Space(5);
 
-                // 진행 바 표시
                 Rect progressRect = EditorGUILayout.GetControlRect();
                 EditorGUI.ProgressBar(progressRect, curProgress, $"{curStatus} ({curProgress * 100:F1}%)");
 
@@ -130,7 +127,6 @@ namespace DoppleLittleHelper
             curProgress = 0f;
             curStatus = "Initializing...";
 
-            // 데이터 클리어
             configSO.ClearSOData();
             Debug.Log("[SHEET2SO] InitializeGeneration COMPLETE");
         }
@@ -147,10 +143,8 @@ namespace DoppleLittleHelper
             Debug.Log($"[SHEET2SO] Start Download All Data: {configSO.SheetList.Count} Sheets");
             InitializeGeneration();
 
-            // 데이터 큐 초기화
             dataQueue = new Queue<SheetData>(configSO.SheetList);
 
-            // EditorApplication.update에 콜백 등록
             EditorApplication.update += ProcessAllDataUpdate;
         }
 
@@ -173,11 +167,9 @@ namespace DoppleLittleHelper
             Debug.Log($"[SHEET2SO] Start Download: {sheetData.sheetName}");
             InitializeGeneration();
 
-            // 데이터 큐 초기화
             dataQueue = new Queue<SheetData>();
             dataQueue.Enqueue(sheetData);
 
-            // EditorApplication.update에 콜백 등록
             EditorApplication.update += ProcessAllDataUpdate;
         }
 
@@ -195,9 +187,10 @@ namespace DoppleLittleHelper
             }
             else
             {
-                // 모든 작업 완료
                 isProcessing = false;
-                EditorApplication.update -= ProcessAllDataUpdate; // 콜백 제거
+                
+                EditorApplication.update -= ProcessAllDataUpdate;
+                
                 Debug.Log("[SHEET2SO] All Data Processing is Complete");
                 Repaint();
             }
