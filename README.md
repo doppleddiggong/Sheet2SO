@@ -13,6 +13,10 @@
 
 ---
 
+
+
+
+
 ## **📦 설치 방법**  
 
 ### **manifest.json을 이용한 설치**  
@@ -35,6 +39,9 @@ Unity 프로젝트의 `Packages/manifest.json` 파일에 다음 내용을 추가
 
 📁 샘플
 /Example 폴더안에 Sample데이터 UnityPackage가 있습니다.
+
+![capture.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture.PNG)
+
 해당 패키지 를 통해 샘플을 확인할 수 있습니다
 
 /Sample/TSV/ 폴더에 TSV 샘플 파일 존재
@@ -52,6 +59,19 @@ Google Spreadsheet URL 형식:
 https://docs.google.com/spreadsheets/d/{SpreadSheetID}/edit?gid={SheetID}
 ```
 
+```bash
+MasterData - SheetInfo.tsv 파일 샘플
+```
+![capture4.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture4.PNG)
+
+
+```bash
+CardData - card.tsv 파일 샘플
+```
+![capture5.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture5.PNG)
+
+---
+
 ## 📄 주요 클래스 설명
 
 | 클래스명               | 설명                                                                 |
@@ -62,6 +82,24 @@ https://docs.google.com/spreadsheets/d/{SpreadSheetID}/edit?gid={SheetID}
 | **SheetData.cs**       | SheetInfo의 URL 데이터를 관리, exportURL을 관리                         |
 | **BaseSO.cs**          | SO 데이터 관리용 베이스 클래스                                       |
 | **BaseData.cs**        | 개별 데이터 파싱 담당                                                |
+
+
+---
+### ➡️ BaseSheetDownloader
+```
+Tools/DoppleLittleHelper/Base Sheet Downloader 를 통해 사용가능
+```
+![capture2.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture2.PNG)
+
+
+---
+### ➡️ BaseSheetConfigSO
+```
+시트 URL과 시트 이름을 관리하는 설정 클래스 
+```
+![capture3.png](https://raw.githubusercontent.com/doppleddiggong/ReadMeImage/main/capture3.PNG)
+
+
 
 ## 🔧 커스터마이징
 
