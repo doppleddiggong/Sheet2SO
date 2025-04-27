@@ -23,7 +23,7 @@
 Unity 프로젝트의 `Packages/manifest.json` 파일에 다음 내용을 추가하세요.  
 ```json
 "dependencies": {
-  "com.dopple.uiextendbutton": "https://github.com/doppleddiggong/Sheet2SO.git"
+  "com.dopple.sheet2so": "https://github.com/doppleddiggong/Sheet2SO.git"
 }
 ```
 
