@@ -124,7 +124,7 @@ YourSheetDownloader (BaseSheetDownloader 상속)
 SO 클래스 정의: BaseSheetConfigSO 상속 클래스와 구조체 정의
 SheetInfo.tsv 작성: 각 스프레드시트의 ID/GID 등록
 SheetConfigSO 에셋 생성: 시트 설정 등록
-BaseSheetDownloader 실행: CSV → SO 변환
+BaseSheetDownloader 실행: TSV,CSV → SO 변환
 게임 내 Resources에서 로딩: 구조화된 데이터 활용
 ```
 
