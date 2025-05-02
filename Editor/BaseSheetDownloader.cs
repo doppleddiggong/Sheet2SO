@@ -118,7 +118,7 @@ namespace DoppleLittleHelper
             }
         }
 
-        protected virtual void InitializeGeneration()
+        protected virtual void InitializeGeneration(bool clear)
         {
             Debug.Log("[SHEET2SO] InitializeGeneration START");
             createTime = DateTime.Now;
@@ -127,7 +127,9 @@ namespace DoppleLittleHelper
             curProgress = 0f;
             curStatus = "Initializing...";
 
-            configSO.ClearSOData();
+            if( clear )
+                configSO.ClearSOData();
+
             Debug.Log("[SHEET2SO] InitializeGeneration COMPLETE");
         }
 
@@ -141,7 +143,7 @@ namespace DoppleLittleHelper
             }
 
             Debug.Log($"[SHEET2SO] Start Download All Data: {configSO.SheetList.Count} Sheets");
-            InitializeGeneration();
+            InitializeGeneration(true);
 
             dataQueue = new Queue<SheetData>(configSO.SheetList);
 
@@ -165,7 +167,7 @@ namespace DoppleLittleHelper
             }
 
             Debug.Log($"[SHEET2SO] Start Download: {sheetData.sheetName}");
-            InitializeGeneration();
+            InitializeGeneration(false);
 
             dataQueue = new Queue<SheetData>();
             dataQueue.Enqueue(sheetData);
